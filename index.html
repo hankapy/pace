@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juoksuvauhdin Laskin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juoksuvauhdin Laskin</h1>
+    <p>Syötä nopeus (km/h)</p>
+    <input type="number" id="speedInput" placeholder="Esim. 10">
+    <br>
+    <button onclick="calculatePace()">Laske keskivauhti</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculatePace() {
+            const speed = document.getElementById('speedInput').value;
+            if (speed > 0) {
+                const pace = 60 / speed;
+                const minutes = Math.floor(pace);
+                const seconds = Math.round((pace - minutes) * 60);
+                const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+                document.getElementById('result').textContent = `Keskivauhti: ${minutes}:${formattedSeconds} min/km`;
+            } else {
+                document.getElementById('result').textContent = "Anna positiivinen nopeus.";
+            }
+        }
+    </script>
+</body>
+</html>
