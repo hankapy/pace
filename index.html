@@ -30,6 +30,14 @@
     <button onclick="calculatePace()">Laske keskivauhti</button>
     <div class="result" id="result"></div>
 
+    <!-- min/km -> km/h -->
+    <p>Syötä keskivauhti (min/km)</p>
+    <input type="number" id="minutesInput" placeholder="Minuutit">
+    <input type="number" id="secondsInput" placeholder="Sekunnit">
+    <br>
+    <button onclick="calculateSpeed()">Laske nopeus</button>
+    <div class="result" id="resultSpeed"></div>
+
     <script>
         function calculatePace() {
             const speed = document.getElementById('speedInput').value;
@@ -43,6 +51,21 @@
                 document.getElementById('result').textContent = "Anna positiivinen nopeus.";
             }
         }
+
+
+    function calculateSpeed() {
+        const minutes = parseInt(document.getElementById('minutesInput').value);
+        const seconds = parseInt(document.getElementById('secondsInput').value);
+        if (minutes >= 0 && seconds >= 0) {
+            const totalMinutes = minutes + (seconds / 60);
+            const speed = 60 / totalMinutes;
+            document.getElementById('resultSpeed').textContent = `Nopeus: ${speed.toFixed(2)} km/h`;
+        } else {
+            document.getElementById('resultSpeed').textContent = "Anna oikeat minuutit ja sekunnit.";
+        }
+
+    }
+      
     </script>
 </body>
 </html>
