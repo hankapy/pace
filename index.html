@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vauhtia!</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            color: #E9EAEC;
-            background-color: #0B0C0C;
-        }
-
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 1em;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 1.5em;
-        }
-
-        button {
-            background-color: #FBE134; 
-            color: #0B0C0C;
-            padding: 15px 32px; /* Sisäiset marginaalit */
-            text-align: center; /* Tekstin keskitys */
-            text-decoration: none; /* Poista alleviivaus */
-            display: inline-block; /* Inline-block-muotoilu */
-            font-size: 16px; /* Fonttikoko */
-            margin: 4px 2px; /* Ulkoiset marginaalit */
-            cursor: pointer; /* Muuta kursori osoittimeksi */
-            border-radius: 5px; /* Reunojen pyöristys */
-            border: none; /* Poista reunus */
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Varjo */
-            transition: background-color 0.3s, box-shadow 0.3s; /* Animaatio värin ja varjon muutokselle */
-        }
-
-        button:hover {
-            background-color: #E4B61A; 
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3); /* Syvempi varjo hover-tilassa */
-        }
-
-        .quote {
-            font-style: italic;
-            margin-top: 30px;
-            font-size: 1.2em;
-            color: #E4B61A;
-        }
-
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vauhtia!</title>
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
+        
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                text-align: center;
+                padding: 50px;
+                color: #E9EAEC;
+                background-color: #0B0C0C;
+            }
+    
+            input, button {
+                padding: 10px;
+                margin: 10px;
+                font-size: 1em;
+            }
+    
+            .result {
+                margin-top: 20px;
+                font-size: 1.5em;
+            }
+    
+            button {
+                background-color: #FBE134; 
+                color: #0B0C0C;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+                border: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s, box-shadow 0.3s;
+            }
+    
+            button:hover {
+                background-color: #E4B61A;
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+            }
+    
+            .quote {
+                font-style: italic;
+                margin-top: 30px;
+                font-size: 1.2em;
+                color: #E4B61A;
+            }
+    
+            /* Heading font */
+            h1 {
+                font-family: 'Roboto mono', sans-serif;
+                font-size: 3em;
+                color: #FBE134;
+            }
+    
+        </style>
+    </head>
 <body>
 
     <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
     
     <h1>Vauhtia!</h1>
-    <p>Syötä nopeus (km/h)</p>
+    <p style="font-size: 1.2em;">Syötä nopeus (km/h)</p>
     <input type="number" id="speedInput" placeholder="Esim. 10">
     <br>
-    <button onclick="calculatePace()">Laske keskivauhti</button>
+    <button onclick="calculatePace()"><strong>Laske keskivauhti</strong></button>
     <div class="result" id="result"></div>
 
     <!-- min/km -> km/h -->
-    <p>Syötä keskivauhti (min/km)</p>
+    <p style="font-size: 1.2em;" >Syötä keskivauhti (min/km)</p>
     <input type="number" id="minutesInput" placeholder="Minuutit">
     <input type="number" id="secondsInput" placeholder="Sekunnit">
     <br>
-    <button onclick="calculateSpeed()">Laske nopeus</button>
+    <button onclick="calculateSpeed()"><strong>Laske nopeus</strong></button>
     <div class="result" id="resultSpeed"></div>
 
     <!-- Quotejen näyttämiseen tarkoitettu elementti -->
