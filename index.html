@@ -7,6 +7,9 @@
         
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
         
         <style>
             body {
@@ -58,7 +61,8 @@
     
             /* Heading font */
             h1 {
-                font-family: 'Roboto mono', sans-serif;
+                font-family: "New Amsterdam", sans-serif;
+                font-style:oblique;
                 font-size: 3em;
                 color: #FBE134;
             }
@@ -76,6 +80,8 @@
     <button onclick="calculatePace()"><strong>Laske keskivauhti</strong></button>
     <div class="result" id="result"></div>
 
+
+    
     <!-- min/km -> km/h -->
     <p style="font-size: 1.4em;" >Syötä keskivauhti (min/km)</p>
     <input type="number" id="minutesInput" placeholder="Minuutit">
