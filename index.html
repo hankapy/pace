@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Vauhtia!</title>
-        
+        <link rel="manifest" href="/manifest.json">
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,6 +163,17 @@
 
         // Näytä satunnainen quote sivun latautuessa
         window.onload = displayRandomQuote;
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
+            });
+        }
+        
     </script>
 
     
