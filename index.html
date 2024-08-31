@@ -9,20 +9,55 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: #f0f0f0;
+            color: #E9EAEC;
+            background-color: #0B0C0C;
         }
+
         input, button {
             padding: 10px;
             margin: 10px;
             font-size: 1em;
         }
+
         .result {
             margin-top: 20px;
             font-size: 1.5em;
         }
+
+        button {
+            background-color: #FBE134; 
+            color: #0B0C0C;
+            padding: 15px 32px; /* Sisäiset marginaalit */
+            text-align: center; /* Tekstin keskitys */
+            text-decoration: none; /* Poista alleviivaus */
+            display: inline-block; /* Inline-block-muotoilu */
+            font-size: 16px; /* Fonttikoko */
+            margin: 4px 2px; /* Ulkoiset marginaalit */
+            cursor: pointer; /* Muuta kursori osoittimeksi */
+            border-radius: 5px; /* Reunojen pyöristys */
+            border: none; /* Poista reunus */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Varjo */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Animaatio värin ja varjon muutokselle */
+        }
+
+        button:hover {
+            background-color: #E4B61A; 
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3); /* Syvempi varjo hover-tilassa */
+        }
+
+        .quote {
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #E4B61A;
+        }
+
     </style>
 </head>
 <body>
+
+    <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
+    
     <h1>Vauhtia!</h1>
     <p>Syötä nopeus (km/h)</p>
     <input type="number" id="speedInput" placeholder="Esim. 10">
@@ -37,6 +72,9 @@
     <br>
     <button onclick="calculateSpeed()">Laske nopeus</button>
     <div class="result" id="resultSpeed"></div>
+
+    <!-- Quotejen näyttämiseen tarkoitettu elementti -->
+    <div class="quote" id="randomQuote"></div>
 
     <script>
         function calculatePace() {
@@ -65,7 +103,36 @@
         }
 
     }
-      
+
+    const quotes = [
+        "I don’t stop when I’m tired, I stop when I’m done.",
+        "Greatness pulls mediocrity into the mud. Get out there and get after it.",
+        "The worst thing that can happen to a man is to become civilized.",
+        "Mental toughness is a lifestyle.",
+        "If you choose to do something, attack it.",
+        "The only thing more contagious than a good attitude is a bad one.",
+        "It’s possible to transcend anything that doesn’t kill you.",
+        "Pain unlocks a secret doorway in the mind, one that leads to both peak performance, and beautiful silence.",
+        "Seeds burst from the inside out in a self-destructive ritual of new life.",
+        "Nobody cares what you did yesterday. What have you done today to better yourself?",
+        "Denial is the ultimate comfort zone.",
+        "You are in danger of living a life so comfortable and soft, that you will die without ever realizing your true potential.",
+        "We’re either getting better or we’re getting worse.",
+        "Don’t focus on what you think you deserve. Take aim at what you are willing to earn.",
+        "You want to be uncommon amongst uncommon people. Period.",
+        "We don’t rise to the level of our expectations, we fall to the level of our training.",
+        "If you’re willing to suffer, and I mean suffer, your brain and body once connected together, can do anything.",
+        "Days."
+    ];
+
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('randomQuote').textContent = quotes[randomIndex];
+        }
+
+        // Näytä satunnainen quote sivun latautuessa
+        window.onload = displayRandomQuote;
+
     </script>
 </body>
 </html>
