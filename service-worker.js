@@ -4,6 +4,9 @@ self.addEventListener('install', (event) => {
             return cache.addAll([
                 '/',
                 '/index.html',
+                '/manifest.json',
+                '/service-worker.js',
+                '/logo_vauhtia.png',
                 '/icon-192x192.png',
                 '/icon-512x512.png'
             ]);
