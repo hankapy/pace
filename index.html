@@ -1,88 +1,83 @@
 <!DOCTYPE html>
 <html lang="fi">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vauhtia!</title>
-        <link rel="manifest" href="/manifest.json">
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
-        
-        <style>
-            body {
-                font-family: 'Roboto', sans-serif;
-                text-align: center;
-                padding: 50px;
-                color: #E9EAEC;
-                background-color: #0B0C0C;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vauhtia!</title>
+    <link rel="manifest" href="/manifest.json">
     
-            input, button {
-                padding: 10px;
-                margin: 10px;
-                font-size: 1em;
-            }
-    
-            .result {
-                margin-top: 20px;
-                font-size: 1.5em;
-            }
-    
-            button {
-                background-color: #FBE134; 
-                color: #0B0C0C;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 5px;
-                border: none;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                transition: background-color 0.3s, box-shadow 0.3s;
-            }
-    
-            button:hover {
-                background-color: #E4B61A;
-                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
-            }
-    
-            .quote {
-                font-style: italic;
-                margin-top: 30px;
-                font-size: 1.2em;
-                color: #E4B61A;
-            }
-    
-            /* Heading font */
-            h1 {
-                font-family: "New Amsterdam", sans-serif;
-                font-size: 3em;
-                color: #FBE134;
-                letter-spacing: 2px;
-            }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
 
-            /* Alalaidan tyyli */
-            footer {
-                margin-top: 2px;
-                padding: 5px;
-                background-color: #0B0C0C;
-                color: #E9EAEC;
-                text-align: center;
-            }
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #E9EAEC;
+            background-color: #0B0C0C;
+        }
 
-            footer img {
-                width: 200px; /* Voit säätää kokoa tarpeen mukaan */
-                height: auto;
-            }
-    
-        </style>
-    </head>
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        button {
+            background-color: #FBE134; 
+            color: #0B0C0C;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #E4B61A;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .quote {
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #E4B61A;
+        }
+
+        h1 {
+            font-family: 'Flamenco', cursive;
+            font-size: 3em;
+            color: #FBE134;
+            letter-spacing: 2px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #0B0C0C;
+            color: #E9EAEC;
+            text-align: center;
+        }
+
+        footer img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
 <body>
 
     <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
@@ -91,20 +86,16 @@
     <p style="font-size: 1.4em;">Syötä nopeus (km/h)</p>
     <input type="number" id="speedInput" placeholder="Esim. 10">
     <br>
-    <button onclick="calculatePace()"><strong>Laske keskivauhti</strong></button>
+    <button onclick="calculatePace()">Laske keskivauhti</button>
     <div class="result" id="result"></div>
 
-
-    
-    <!-- min/km -> km/h -->
-    <p style="font-size: 1.4em;" >Syötä keskivauhti (min/km)</p>
+    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
     <input type="number" id="minutesInput" placeholder="Minuutit">
     <input type="number" id="secondsInput" placeholder="Sekunnit">
     <br>
-    <button onclick="calculateSpeed()"><strong>Laske nopeus</strong></button>
+    <button onclick="calculateSpeed()">Laske nopeus</button>
     <div class="result" id="resultSpeed"></div>
 
-    <!-- Quotejen näyttämiseen tarkoitettu elementti -->
     <div class="quote" id="randomQuote"></div>
 
     <script>
@@ -121,47 +112,44 @@
             }
         }
 
-
-    function calculateSpeed() {
-        const minutes = parseInt(document.getElementById('minutesInput').value);
-        const seconds = parseInt(document.getElementById('secondsInput').value);
-        if (minutes >= 0 && seconds >= 0) {
-            const totalMinutes = minutes + (seconds / 60);
-            const speed = 60 / totalMinutes;
-            document.getElementById('resultSpeed').textContent = `Nopeus: ${speed.toFixed(2)} km/h`;
-        } else {
-            document.getElementById('resultSpeed').textContent = "Anna oikeat minuutit ja sekunnit.";
+        function calculateSpeed() {
+            const minutes = parseInt(document.getElementById('minutesInput').value);
+            const seconds = parseInt(document.getElementById('secondsInput').value);
+            if (minutes >= 0 && seconds >= 0) {
+                const totalMinutes = minutes + (seconds / 60);
+                const speed = 60 / totalMinutes;
+                document.getElementById('resultSpeed').textContent = `Nopeus: ${speed.toFixed(2)} km/h`;
+            } else {
+                document.getElementById('resultSpeed').textContent = "Anna oikeat minuutit ja sekunnit.";
+            }
         }
 
-    }
-
-    const quotes = [
-        "I don’t stop when I’m tired, I stop when I’m done.",
-        "Greatness pulls mediocrity into the mud. Get out there and get after it.",
-        "The worst thing that can happen to a man is to become civilized.",
-        "Mental toughness is a lifestyle.",
-        "If you choose to do something, attack it.",
-        "The only thing more contagious than a good attitude is a bad one.",
-        "It’s possible to transcend anything that doesn’t kill you.",
-        "Pain unlocks a secret doorway in the mind, one that leads to both peak performance, and beautiful silence.",
-        "Seeds burst from the inside out in a self-destructive ritual of new life.",
-        "Nobody cares what you did yesterday. What have you done today to better yourself?",
-        "Denial is the ultimate comfort zone.",
-        "You are in danger of living a life so comfortable and soft, that you will die without ever realizing your true potential.",
-        "We’re either getting better or we’re getting worse.",
-        "Don’t focus on what you think you deserve. Take aim at what you are willing to earn.",
-        "You want to be uncommon amongst uncommon people. Period.",
-        "We don’t rise to the level of our expectations, we fall to the level of our training.",
-        "If you’re willing to suffer, and I mean suffer, your brain and body once connected together, can do anything.",
-        "Days."
-    ];
+        const quotes = [
+            "I don’t stop when I’m tired, I stop when I’m done.",
+            "Greatness pulls mediocrity into the mud. Get out there and get after it.",
+            "The worst thing that can happen to a man is to become civilized.",
+            "Mental toughness is a lifestyle.",
+            "If you choose to do something, attack it.",
+            "The only thing more contagious than a good attitude is a bad one.",
+            "It’s possible to transcend anything that doesn’t kill you.",
+            "Pain unlocks a secret doorway in the mind, one that leads to both peak performance, and beautiful silence.",
+            "Seeds burst from the inside out in a self-destructive ritual of new life.",
+            "Nobody cares what you did yesterday. What have you done today to better yourself?",
+            "Denial is the ultimate comfort zone.",
+            "You are in danger of living a life so comfortable and soft, that you will die without ever realizing your true potential.",
+            "We’re either getting better or we’re getting worse.",
+            "Don’t focus on what you think you deserve. Take aim at what you are willing to earn.",
+            "You want to be uncommon amongst uncommon people. Period.",
+            "We don’t rise to the level of our expectations, we fall to the level of our training.",
+            "If you’re willing to suffer, and I mean suffer, your brain and body once connected together, can do anything.",
+            "Days."
+        ];
 
         function displayRandomQuote() {
             const randomIndex = Math.floor(Math.random() * quotes.length);
             document.getElementById('randomQuote').textContent = quotes[randomIndex];
         }
 
-        // Näytä satunnainen quote sivun latautuessa
         window.onload = displayRandomQuote;
 
         if ('serviceWorker' in navigator) {
@@ -173,10 +161,8 @@
                 });
             });
         }
-        
     </script>
 
-    
     <footer>
         <img src="footer_logo.png" alt="Alalaidan logo">
     </footer>
