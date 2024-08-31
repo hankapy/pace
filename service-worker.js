@@ -8,7 +8,8 @@ self.addEventListener('install', (event) => {
                 '/service-worker.js',
                 '/logo_vauhtia.png',
                 '/icon-192x192.png',
-                '/icon-512x512.png'
+                '/icon-512x512.png',
+                '/footer_logo.png',
             ]);
         })
     );
