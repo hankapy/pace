@@ -87,7 +87,7 @@
     
     <h1>Vauhtia!</h1>
     
-    <!-- Nopeus -> Vauhti -->
+    <!-- Nopeus -> Keskivauhti -->
     <p style="font-size: 1.4em;">Syötä nopeus (km/h)</p>
     <input type="number" id="speedInput" placeholder="Esim. 10">
     <br>
@@ -102,7 +102,11 @@
     <button onclick="calculateSpeed()">Laske nopeus</button>
     <div class="result" id="resultSpeed"></div>
     
-    <!-- Nopeus + Matka -> Aika -->
+    <!-- Vauhti + Matka -> Aika -->
+    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
+    <input type="number" id="paceMinutesInput" placeholder="Minuutit">
+    <input type="number" id="paceSecondsInput" placeholder="Sekunnit">
+    <br>
     <p style="font-size: 1.4em;">Syötä matka (km)</p>
     <input type="number" id="distanceInput" placeholder="Esim. 10">
     <br>
@@ -139,19 +143,21 @@
             }
         }
 
-        // Laskee ajan (min/h) annetun nopeuden (km/h) ja matkan (km) perusteella
+        // Laskee ajan (tunneissa ja minuuteissa) annetun keskivauhdin (min/km) ja matkan (km) perusteella
         function calculateTime() {
-            const speed = parseFloat(document.getElementById('speedInput').value);
+            const paceMinutes = parseInt(document.getElementById('paceMinutesInput').value);
+            const paceSeconds = parseInt(document.getElementById('paceSecondsInput').value);
             const distance = parseFloat(document.getElementById('distanceInput').value);
 
-            if (speed > 0 && distance > 0) {
-                const time = (distance / speed) * 60; // Aika minuutteina
-                const hours = Math.floor(time / 60);
-                const minutes = Math.floor(time % 60);
-                const seconds = Math.floor((time % 1) * 60);
+            if (paceMinutes >= 0 && paceSeconds >= 0 && distance > 0) {
+                const totalPaceMinutes = paceMinutes + (paceSeconds / 60);
+                const totalMinutes = totalPaceMinutes * distance;
+                const hours = Math.floor(totalMinutes / 60);
+                const minutes = Math.floor(totalMinutes % 60);
+                const seconds = Math.floor((totalMinutes % 1) * 60);
                 document.getElementById('resultTime').textContent = `Aika: ${hours}h ${minutes}min ${seconds}s`;
             } else {
-                document.getElementById('resultTime').textContent = "Anna oikeat nopeus ja matka.";
+                document.getElementById('resultTime').textContent = "Anna oikeat keskivauhti ja matka.";
             }
         }
 
