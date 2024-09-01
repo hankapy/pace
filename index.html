@@ -86,32 +86,33 @@
     <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
     
     <h1>Vauhtia!</h1>
+    
+    <!-- Nopeus -> Vauhti -->
     <p style="font-size: 1.4em;">Syötä nopeus (km/h)</p>
     <input type="number" id="speedInput" placeholder="Esim. 10">
     <br>
-
-    <p style="font-size: 1.4em;">Syötä matka (km)</p>
-    <input type="number" id="distanceInput" placeholder="Esim. 10">
-    <br>
-    <button onclick="calculateTime()">Laske aika</button>
-    <div class="result" id="resultTime"></div>
-
+    <button onclick="calculatePace()">Laske keskivauhti</button>
+    <div class="result" id="resultPace"></div>
+    
+    <!-- Keskivauhti -> Nopeus -->
     <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
     <input type="number" id="minutesInput" placeholder="Minuutit">
     <input type="number" id="secondsInput" placeholder="Sekunnit">
     <br>
     <button onclick="calculateSpeed()">Laske nopeus</button>
     <div class="result" id="resultSpeed"></div>
-
-    <p style="font-size: 1.4em;">Syötä aika (min)</p>
-    <input type="number" id="timeInput" placeholder="Esim. 60">
+    
+    <!-- Nopeus + Matka -> Aika -->
+    <p style="font-size: 1.4em;">Syötä matka (km)</p>
+    <input type="number" id="distanceInput" placeholder="Esim. 10">
     <br>
-    <button onclick="calculateDistance()">Laske matka</button>
-    <div class="result" id="resultDistance"></div>
+    <button onclick="calculateTime()">Laske aika</button>
+    <div class="result" id="resultTime"></div>
 
     <div class="quote" id="randomQuote"></div>
 
     <script>
+        // Laskee keskivauhdin (min/km) nopeuden (km/h) perusteella
         function calculatePace() {
             const speed = document.getElementById('speedInput').value;
             if (speed > 0) {
@@ -119,12 +120,13 @@
                 const minutes = Math.floor(pace);
                 const seconds = Math.round((pace - minutes) * 60);
                 const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-                document.getElementById('result').textContent = `Keskivauhti: ${minutes}:${formattedSeconds} min/km`;
+                document.getElementById('resultPace').textContent = `Keskivauhti: ${minutes}:${formattedSeconds} min/km`;
             } else {
-                document.getElementById('result').textContent = "Anna positiivinen nopeus.";
+                document.getElementById('resultPace').textContent = "Anna positiivinen nopeus.";
             }
         }
 
+        // Laskee nopeuden (km/h) keskivauhdin (min/km) perusteella
         function calculateSpeed() {
             const minutes = parseInt(document.getElementById('minutesInput').value);
             const seconds = parseInt(document.getElementById('secondsInput').value);
@@ -137,21 +139,7 @@
             }
         }
 
-        function calculateDistance() {
-            const minutesInput = parseInt(document.getElementById('minutesInput').value);
-            const secondsInput = parseInt(document.getElementById('secondsInput').value);
-            const timeInput = parseInt(document.getElementById('timeInput').value);
-
-            if ((minutesInput >= 0 && secondsInput >= 0) && timeInput > 0) {
-                const totalMinutes = minutesInput + (secondsInput / 60);
-                const speed = 60 / totalMinutes;
-                const distance = (timeInput / 60) * speed;
-                document.getElementById('resultDistance').textContent = `Matka: ${distance.toFixed(2)} km`;
-            } else {
-                document.getElementById('resultDistance').textContent = "Anna oikeat arvot.";
-            }
-        }
-
+        // Laskee ajan (min/h) annetun nopeuden (km/h) ja matkan (km) perusteella
         function calculateTime() {
             const speed = parseFloat(document.getElementById('speedInput').value);
             const distance = parseFloat(document.getElementById('distanceInput').value);
