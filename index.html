@@ -99,6 +99,18 @@
     <button onclick="calculateSpeed()">Laske nopeus</button>
     <div class="result" id="resultSpeed"></div>
 
+    <p style="font-size: 1.4em;">Syötä aika (min)</p>
+    <input type="number" id="timeInput" placeholder="Esim. 60">
+    <br>
+    <button onclick="calculateDistance()">Laske matka</button>
+    <div class="result" id="resultDistance"></div>
+
+    <p style="font-size: 1.4em;">Syötä matka (km)</p>
+    <input type="number" id="distanceInput" placeholder="Esim. 10">
+    <br>
+    <button onclick="calculateTime()">Laske aika</button>
+    <div class="result" id="resultTime"></div>
+
     <div class="quote" id="randomQuote"></div>
 
     <script>
@@ -124,6 +136,35 @@
                 document.getElementById('resultSpeed').textContent = `Nopeus: ${speed.toFixed(2)} km/h`;
             } else {
                 document.getElementById('resultSpeed').textContent = "Anna oikeat minuutit ja sekunnit.";
+            }
+        }
+
+        function calculateDistance() {
+            const minutesInput = parseInt(document.getElementById('minutesInput').value);
+            const secondsInput = parseInt(document.getElementById('secondsInput').value);
+            const timeInput = parseInt(document.getElementById('timeInput').value);
+
+            if ((minutesInput >= 0 && secondsInput >= 0) && timeInput > 0) {
+                const totalMinutes = minutesInput + (secondsInput / 60);
+                const speed = 60 / totalMinutes;
+                const distance = (timeInput / 60) * speed;
+                document.getElementById('resultDistance').textContent = `Matka: ${distance.toFixed(2)} km`;
+            } else {
+                document.getElementById('resultDistance').textContent = "Anna oikeat arvot.";
+            }
+        }
+
+        function calculateTime() {
+            const speed = parseFloat(document.getElementById('speedInput').value);
+            const distance = parseFloat(document.getElementById('distanceInput').value);
+
+            if (speed > 0 && distance > 0) {
+                const time = distance / speed * 60; // Aika minuutteina
+                const hours = Math.floor(time / 60);
+                const minutes = Math.floor(time % 60);
+                document.getElementById('resultTime').textContent = `Aika: ${hours}h ${minutes}min`;
+            } else {
+                document.getElementById('resultTime').textContent = "Anna oikeat nopeus ja matka.";
             }
         }
 
