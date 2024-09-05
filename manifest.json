@@ -1,7 +1,7 @@
 {
     "name": "Vauhtia!",
     "short_name": "Vauhtia",
-    "start_url": "/index",
+    "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#0B0C0C",
     "theme_color": "#FBE134",
