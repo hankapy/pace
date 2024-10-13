@@ -113,6 +113,17 @@
     <button onclick="calculateTime()">Laske aika</button>
     <div class="result" id="resultTime"></div>
 
+    <!-- Matka + Aika -> Keskivauhti -->
+    <p style="font-size: 1.4em;">Syötä matka (km)</p>
+    <input type="number" id="timeDistanceInput" placeholder="Esim. 10">
+    <br>
+    <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
+    <input type="number" id="timeHoursInput" placeholder="Tunnit">
+    <input type="number" id="timeMinutesInput" placeholder="Minuutit">
+    <br>
+    <button onclick="calculateRequiredPace()">Laske tarvittava keskivauhti</button>
+    <div class="result" id="resultRequiredPace"></div>
+
     <div class="quote" id="randomQuote"></div>
 
     <script>
@@ -158,6 +169,24 @@
                 document.getElementById('resultTime').textContent = `Aika: ${hours}h ${minutes}min ${seconds}s`;
             } else {
                 document.getElementById('resultTime').textContent = "Anna oikeat keskivauhti ja matka.";
+            }
+        }
+
+        // Laskee tarvittavan keskivauhdin (min/km) annetun matkan ja ajan perusteella
+        function calculateRequiredPace() {
+            const distance = parseFloat(document.getElementById('timeDistanceInput').value);
+            const hours = parseInt(document.getElementById('timeHoursInput').value);
+            const minutes = parseInt(document.getElementById('timeMinutesInput').value);
+            
+            if (distance > 0 && hours >= 0 && minutes >= 0) {
+                const totalMinutes = hours * 60 + minutes;
+                const pace = totalMinutes / distance;
+                const paceMinutes = Math.floor(pace);
+                const paceSeconds = Math.round((pace - paceMinutes) * 60);
+                const formattedSeconds = paceSeconds < 10 ? '0' + paceSeconds : paceSeconds;
+                document.getElementById('resultRequiredPace').textContent = `Tarvittava keskivauhti: ${paceMinutes}:${formattedSeconds} min/km`;
+            } else {
+                document.getElementById('resultRequiredPace').textContent = "Anna oikeat matka ja aika.";
             }
         }
 
