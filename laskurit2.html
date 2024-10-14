@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aika- ja matkalaskurit</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Yhteinen tyyli -->
+</head>
+<body>
+
+    <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
+    
+    <h1>Aika- ja matkalaskurit</h1>
+    
+    <!-- Vauhti + Matka -> Aika -->
+    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
+    <input type="number" id="paceMinutesInput" placeholder="Minuutit">
+    <input type="number" id="paceSecondsInput" placeholder="Sekunnit">
+    <br>
+    <p style="font-size: 1.4em;">Syötä matka (km)</p>
+    <input type="number" id="distanceInput" placeholder="Esim. 10">
+    <br>
+    <button onclick="calculateTime()">Laske aika</button>
+    <div class="result" id="resultTime"></div>
+
+    <!-- Matka + Aika -> Keskivauhti -->
+    <p style="font-size: 1.4em;">Syötä matka (km)</p>
+    <input type="number" id="timeDistanceInput" placeholder="Esim. 10">
+    <br>
+    <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
+    <input type="number" id="timeHoursInput" placeholder="Tunnit">
+    <input type="number" id="timeMinutesInput" placeholder="Minuutit">
+    <br>
+    <button onclick="calculateRequiredPace()">Laske tarvittava keskivauhti</button>
+    <div class="result" id="resultRequiredPace"></div>
+
+    <button class="back-button" onclick="window.location.href='index.html'">Takaisin etusivulle</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
