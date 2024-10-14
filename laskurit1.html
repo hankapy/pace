@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peruslaskurit</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Yhteinen tyyli -->
+</head>
+<body>
+
+    <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
+    
+    <h1>Peruslaskurit</h1>
+    
+    <!-- Nopeus -> Keskivauhti -->
+    <p style="font-size: 1.4em;">Syötä nopeus (km/h)</p>
+    <input type="number" id="speedInput" placeholder="Esim. 10">
+    <br>
+    <button onclick="calculatePace()">Laske keskivauhti</button>
+    <div class="result" id="resultPace"></div>
+    
+    <!-- Keskivauhti -> Nopeus -->
+    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
+    <input type="number" id="minutesInput" placeholder="Minuutit">
+    <input type="number" id="secondsInput" placeholder="Sekunnit">
+    <br>
+    <button onclick="calculateSpeed()">Laske nopeus</button>
+    <div class="result" id="resultSpeed"></div>
+
+    <button class="back-button" onclick="window.location.href='index.html'">Takaisin etusivulle</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
