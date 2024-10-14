@@ -4,192 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vauhtia!</title>
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Flamenco:wght@400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-            padding: 50px;
-            color: #E9EAEC;
-            background-color: #0B0C0C;
-        }
-
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 1em;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 1.5em;
-        }
-
-        button {
-            background-color: #FBE134; 
-            color: #0B0C0C;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            border: none;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        button:hover {
-            background-color: #E4B61A;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        .quote {
-            font-style: italic;
-            margin-top: 30px;
-            font-size: 1.2em;
-            color: #E4B61A;
-        }
-
-        h1 {
-            font-family: "New Amsterdam", sans-serif;
-            font-size: 3em;
-            color: #FBE134;
-            letter-spacing: 2px;
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #0B0C0C;
-            color: #E9EAEC;
-            text-align: center;
-        }
-
-        footer img {
-            width: 200px;
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Yhteinen tyyli -->
 </head>
 <body>
-
     <img src="logo_vauhtia.png" alt="Sovelluksen logo" style="width: 100px; height: auto;">
     
     <h1>Vauhtia!</h1>
     
-    <!-- Nopeus -> Keskivauhti -->
-    <p style="font-size: 1.4em;">Syötä nopeus (km/h)</p>
-    <input type="number" id="speedInput" placeholder="Esim. 10">
-    <br>
-    <button onclick="calculatePace()">Laske keskivauhti</button>
-    <div class="result" id="resultPace"></div>
-    
-    <!-- Keskivauhti -> Nopeus -->
-    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
-    <input type="number" id="minutesInput" placeholder="Minuutit">
-    <input type="number" id="secondsInput" placeholder="Sekunnit">
-    <br>
-    <button onclick="calculateSpeed()">Laske nopeus</button>
-    <div class="result" id="resultSpeed"></div>
-    
-    <!-- Vauhti + Matka -> Aika -->
-    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
-    <input type="number" id="paceMinutesInput" placeholder="Minuutit">
-    <input type="number" id="paceSecondsInput" placeholder="Sekunnit">
-    <br>
-    <p style="font-size: 1.4em;">Syötä matka (km)</p>
-    <input type="number" id="distanceInput" placeholder="Esim. 10">
-    <br>
-    <button onclick="calculateTime()">Laske aika</button>
-    <div class="result" id="resultTime"></div>
+    <p style="font-size: 1.4em;">Valitse laskuri:</p>
+    <button onclick="window.location.href='laskurit1.html'">Peruslaskurit</button>
+    <button onclick="window.location.href='laskurit2.html'">Aika- ja matkalaskurit</button>
 
-    <!-- Matka + Aika -> Keskivauhti -->
-    <p style="font-size: 1.4em;">Syötä matka (km)</p>
-    <input type="number" id="timeDistanceInput" placeholder="Esim. 10">
-    <br>
-    <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
-    <input type="number" id="timeHoursInput" placeholder="Tunnit">
-    <input type="number" id="timeMinutesInput" placeholder="Minuutit">
-    <br>
-    <button onclick="calculateRequiredPace()">Laske tarvittava keskivauhti</button>
-    <div class="result" id="resultRequiredPace"></div>
+    <div class="quote" id="randomQuote"></div> <!-- Lainausosio -->
 
-    <div class="quote" id="randomQuote"></div>
+    <footer>
+        <img src="footer_logo.png" alt="Alalaidan logo">
+    </footer>
 
+    <script src="script.js"></script> <!-- Yhteinen JavaScript -->
     <script>
-        // Laskee keskivauhdin (min/km) nopeuden (km/h) perusteella
-        function calculatePace() {
-            const speed = document.getElementById('speedInput').value;
-            if (speed > 0) {
-                const pace = 60 / speed;
-                const minutes = Math.floor(pace);
-                const seconds = Math.round((pace - minutes) * 60);
-                const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-                document.getElementById('resultPace').textContent = `Keskivauhti: ${minutes}:${formattedSeconds} min/km`;
-            } else {
-                document.getElementById('resultPace').textContent = "Anna positiivinen nopeus.";
-            }
-        }
-
-        // Laskee nopeuden (km/h) keskivauhdin (min/km) perusteella
-        function calculateSpeed() {
-            const minutes = parseInt(document.getElementById('minutesInput').value);
-            const seconds = parseInt(document.getElementById('secondsInput').value);
-            if (minutes >= 0 && seconds >= 0) {
-                const totalMinutes = minutes + (seconds / 60);
-                const speed = 60 / totalMinutes;
-                document.getElementById('resultSpeed').textContent = `Nopeus: ${speed.toFixed(2)} km/h`;
-            } else {
-                document.getElementById('resultSpeed').textContent = "Anna oikeat minuutit ja sekunnit.";
-            }
-        }
-
-        // Laskee ajan (tunneissa ja minuuteissa) annetun keskivauhdin (min/km) ja matkan (km) perusteella
-        function calculateTime() {
-            const paceMinutes = parseInt(document.getElementById('paceMinutesInput').value);
-            const paceSeconds = parseInt(document.getElementById('paceSecondsInput').value);
-            const distance = parseFloat(document.getElementById('distanceInput').value);
-
-            if (paceMinutes >= 0 && paceSeconds >= 0 && distance > 0) {
-                const totalPaceMinutes = paceMinutes + (paceSeconds / 60);
-                const totalMinutes = totalPaceMinutes * distance;
-                const hours = Math.floor(totalMinutes / 60);
-                const minutes = Math.floor(totalMinutes % 60);
-                const seconds = Math.floor((totalMinutes % 1) * 60);
-                document.getElementById('resultTime').textContent = `Aika: ${hours}h ${minutes}min ${seconds}s`;
-            } else {
-                document.getElementById('resultTime').textContent = "Anna oikeat keskivauhti ja matka.";
-            }
-        }
-
-        // Laskee tarvittavan keskivauhdin (min/km) annetun matkan ja ajan perusteella
-        function calculateRequiredPace() {
-            const distance = parseFloat(document.getElementById('timeDistanceInput').value);
-            const hours = parseInt(document.getElementById('timeHoursInput').value);
-            const minutes = parseInt(document.getElementById('timeMinutesInput').value);
-            
-            if (distance > 0 && hours >= 0 && minutes >= 0) {
-                const totalMinutes = hours * 60 + minutes;
-                const pace = totalMinutes / distance;
-                const paceMinutes = Math.floor(pace);
-                const paceSeconds = Math.round((pace - paceMinutes) * 60);
-                const formattedSeconds = paceSeconds < 10 ? '0' + paceSeconds : paceSeconds;
-                document.getElementById('resultRequiredPace').textContent = `Tarvittava keskivauhti: ${paceMinutes}:${formattedSeconds} min/km`;
-            } else {
-                document.getElementById('resultRequiredPace').textContent = "Anna oikeat matka ja aika.";
-            }
-        }
-
         const quotes = [
             "I don’t stop when I’m tired, I stop when I’m done.",
             "Greatness pulls mediocrity into the mud. Get out there and get after it.",
@@ -216,22 +49,7 @@
             document.getElementById('randomQuote').textContent = quotes[randomIndex];
         }
 
-        window.onload = displayRandomQuote;
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }).catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-            });
-        }
+        window.onload = displayRandomQuote; // Näytä lainaus sivun latauksen yhteydessä
     </script>
-
-    <footer>
-        <img src="footer_logo.png" alt="Alalaidan logo">
-    </footer>
-
 </body>
 </html>
