@@ -12,30 +12,60 @@
     
     <h1>Aika- ja matkalaskurit</h1>
     
-    <!-- Vauhti + Matka -> Aika -->
-    <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
-    <input type="number" id="paceMinutesInput" placeholder="Minuutit">
-    <input type="number" id="paceSecondsInput" placeholder="Sekunnit">
-    <br>
-    <p style="font-size: 1.4em;">Syötä matka (km)</p>
-    <input type="number" id="distanceInput" placeholder="Esim. 10">
-    <br>
-    <button onclick="calculateTime()">Laske aika</button>
-    <div class="result" id="resultTime"></div>
+  <!-- Vauhti + Matka -> Aika -->
+  <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
+  <input type="number" id="paceMinutesInput" placeholder="Minuutit">
+  <input type="number" id="paceSecondsInput" placeholder="Sekunnit">
+  <br>
+  <p style="font-size: 1.4em;">Syötä matka (km)</p>
+  <input type="number" id="distanceInput" placeholder="Esim. 10">
+  <br>
+  <button onclick="calculateTime()">Laske aika</button>
+  <div class="result" id="resultTime"></div>
 
-    <!-- Matka + Aika -> Keskivauhti -->
-    <p style="font-size: 1.4em;">Syötä matka (km)</p>
-    <input type="number" id="timeDistanceInput" placeholder="Esim. 10">
-    <br>
-    <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
-    <input type="number" id="timeHoursInput" placeholder="Tunnit">
-    <input type="number" id="timeMinutesInput" placeholder="Minuutit">
-    <br>
-    <button onclick="calculateRequiredPace()">Laske tarvittava keskivauhti</button>
-    <div class="result" id="resultRequiredPace"></div>
+  <!-- Matka + Aika -> Keskivauhti -->
+  <p style="font-size: 1.4em;">Syötä matka (km)</p>
+  <input type="number" id="timeDistanceInput" placeholder="Esim. 10">
+  <br>
+  <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
+  <input type="number" id="timeHoursInput" placeholder="Tunnit">
+  <input type="number" id="timeMinutesInput" placeholder="Minuutit">
+  <br>
+  <button onclick="calculateRequiredPace()">Laske tarvittava keskivauhti</button>
+  <div class="result" id="resultRequiredPace"></div>
 
-    <button class="back-button" onclick="window.location.href='index.html'">Takaisin etusivulle</button>
+  <!-- Keskivauhti + Aika -> Matka -->
+  <p style="font-size: 1.4em;">Syötä keskivauhti (min/km)</p>
+  <input type="number" id="averagePaceMinutesInput" placeholder="Minuutit">
+  <input type="number" id="averagePaceSecondsInput" placeholder="Sekunnit">
+  <br>
+  <p style="font-size: 1.4em;">Syötä aika (tunteina ja minuutteina)</p>
+  <input type="number" id="averageTimeHoursInput" placeholder="Tunnit">
+  <input type="number" id="averageTimeMinutesInput" placeholder="Minuutit">
+  <br>
+  <button onclick="calculateDistance()">Laske matka</button>
+  <div class="result" id="resultDistance"></div>
 
-    <script src="script.js"></script>
+  <button class="back-button" onclick="window.location.href='index.html'">Takaisin etusivulle</button>
+
+  <script src="script.js"></script> <!-- Yhteinen JavaScript -->
+  <script>
+      // Laskee matkan keskivauhdin ja ajan perusteella
+      function calculateDistance() {
+          const paceMinutes = parseInt(document.getElementById('averagePaceMinutesInput').value) || 0; // Minuutit
+          const paceSeconds = parseInt(document.getElementById('averagePaceSecondsInput').value) || 0; // Sekunnit
+          const timeHours = parseInt(document.getElementById('averageTimeHoursInput').value) || 0; // Tunnit
+          const timeMinutes = parseInt(document.getElementById('averageTimeMinutesInput').value) || 0; // Minuutit
+          
+          if ((paceMinutes >= 0 && paceSeconds >= 0) && (timeHours >= 0 || timeMinutes >= 0)) {
+              const totalTimeInHours = timeHours + (timeMinutes / 60); // Muutetaan kaikki tunneiksi
+              const totalPaceInHours = (paceMinutes + (paceSeconds / 60)) / 60; // Muutetaan keskivauhti tunneiksi
+              const distance = totalTimeInHours / totalPaceInHours; // Matka = aika / keskivauhti
+              document.getElementById('resultDistance').textContent = `Matka: ${distance.toFixed(2)} km`;
+          } else {
+              document.getElementById('resultDistance').textContent = "Anna oikeat keskivauhti ja aika.";
+          }
+      }
+  </script>
 </body>
 </html>
